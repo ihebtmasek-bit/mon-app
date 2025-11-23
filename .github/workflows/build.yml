@@ -10,6 +10,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Remove Cordova reference
+      run: |
+        cd android
+        # Supprimer la ligne problématique AVANT le build
+        sed -i '/cordova.variables.gradle/d' app/capacitor.build.gradle
+        
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
